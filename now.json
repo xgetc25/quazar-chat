@@ -1,6 +1,6 @@
 {
   "builds": [
-    { "src": "dist/spa-mat/**", "use": "@now/static" },
-    { "src": "server/index.js", "use": "@now/node" }
+    { "src": "dist/spa-mat/index.html", "use": "@now/static" },
+    { "src": "server/index.js", "use": "@now/node-server" }
   ]
 }

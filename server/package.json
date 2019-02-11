@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "localtunnel": "^1.9.1",
+    "micro": "^9.3.3",
+    "socket.io": "^2.2.0"
+  }
+}

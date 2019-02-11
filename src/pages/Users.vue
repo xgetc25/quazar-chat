@@ -42,7 +42,7 @@ export default {
       user: '',
       message: '',
       messages: [],
-      socket : io('localhost:3001')
+      socket : io('https://big-yak-4.localtunnel.me')
     };
   },
   methods: {
@@ -53,6 +53,9 @@ export default {
                 user: this.user,
                 message: this.message
             });
+
+            this.socket.emit('chat message', '#' + this.user + ' ' + this.message)
+
             this.message = ''
         }
     },
@@ -60,6 +63,11 @@ export default {
         this.socket.on('MESSAGE', (data) => {
             this.messages.push(data);
         });
+        this.socket.on('chat message', (data) => {
+            this.messages.push({user: data, message: data});
+        });
+
+
     }
 };
 </script>

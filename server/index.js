@@ -1,16 +1,18 @@
-const express = require('express');
-const app = express();
+const micro = require('micro');
+const fs = require('fs');
+const path = require('path');
 
-const server = app.listen(3001, function() {
-    console.log('server running on port 3001');
+const document = path.join(__dirname, 'index.html');
+const html = fs.readFileSync(document);
+
+const server = micro(async (req, res) => {
+  console.log('Serving index.html');
+  res.end(html);
 });
-
 
 const io = require('socket.io')(server);
 
-io.on('connection', function(socket) {
-    console.log(socket.id)
-    socket.on('SEND_MESSAGE', function(data) {
-        io.emit('MESSAGE', data)
-    });
-});
+// socket-io handlers are in websocket-server.js
+require('./websocket-server.js')(io);
+
+server.listen(4000, () => console.log('Listening on localhost:4000'));
