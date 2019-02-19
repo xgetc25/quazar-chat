@@ -1,3 +1,4 @@
 # Quasar App
 
-> WIP
+for server run
+> node /server/index.js
